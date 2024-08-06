@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escenarios de Transformación: Personalidad Venezolana</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/17.0.2/umd/react.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/17.0.2/umd/react-dom.production.min.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f0f4f8;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+        }
+        .infographic {
+            background-color: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .section {
+            margin-bottom: 40px;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #ecf0f1;
+            transition: all 0.3s ease;
+        }
+        .section:hover {
+            background-color: #d5dbdb;
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .scenario {
+            margin-bottom: 30px;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #e8f6f3;
+            border-left: 5px solid #16a085;
+        }
+        .scenario h3 {
+            color: #16a085;
+            margin-top: 0;
+        }
+        .timeline {
+            margin-top: 40px;
+        }
+        .timeline ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .timeline li {
+            margin-bottom: 15px;
+            padding-left: 25px;
+            position: relative;
+        }
+        .timeline li::before {
+            content: "•";
+            color: #3498db;
+            font-size: 1.8em;
+            position: absolute;
+            left: 0;
+            top: -8px;
+        }
+        .future-projection {
+            background-color: #fdebd0;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 0.9em;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        .details {
+            margin-top: 15px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            border-left: 3px solid #2ecc71;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script>
+        const e = React.createElement;
+
+        const Section = ({ title, children }) => {
+            return e('div', { className: 'section' },
+                e('h2', null, title),
+                children
+            );
+        };
+
+        const Scenario = ({ title, metaphor, description, characteristics, historicalManifestations, futureProjection }) => {
+            const [showDetails, setShowDetails] = React.useState(false);
+
+            return e('div', { className: 'scenario' },
+                e('h3', null, title),
+                e('p', null, `Metáfora: ${metaphor}`),
+                e('p', null, description),
+                e('button', { onClick: () => setShowDetails(!showDetails) },
+                    showDetails ? "Ocultar Detalles" : "Mostrar Detalles"
+                ),
+                showDetails && e('div', { className: 'details' },
+                    e('h4', null, 'Características:'),
+                    e('ul', null, characteristics.map((char, index) => e('li', { key: index }, char))),
+                    e('h4', null, 'Manifestaciones Históricas:'),
+                    e('p', null, historicalManifestations),
+                    e('h4', null, 'Proyección Futura:'),
+                    e('p', null, futureProjection)
+                )
+            );
+        };
+
+        const App = () => {
+            const uncertainties = [
+                "¿Cómo evolucionará la tendencia a la simplificación frente a los desafíos complejos?",
+                "¿La ambitendencia se convertirá en una fortaleza adaptativa o en una debilidad por la falta de constancia?",
+                "¿Podrá superarse la inmadurez social para construir instituciones sólidas?",
+                "¿El individualismo dará paso a un mayor sentido de comunidad?",
+                "¿Cómo se canalizará el comportamiento impredecible en momentos de crisis?"
+            ];
+
+            const scenarios = [
+                {
+                    title: "El Despertar Colectivo",
+                    metaphor: "La Orquesta Sinfónica",
+                    description: "Un escenario donde la sociedad venezolana logra canalizar su diversidad (ambitendencia) en una sinergia productiva, como una orquesta donde cada instrumento aporta su sonido único para crear una melodía armoniosa.",
+                    characteristics: [
+                        "Transformación de la ambitendencia en versatilidad productiva",
+                        "Desarrollo de madurez social a través de la educación",
+                        "Canalización del individualismo hacia la innovación social"
+                    ],
+                    historicalManifestations: "Este escenario se vislumbró brevemente durante los períodos de bonanza económica, donde hubo intentos de crear instituciones sólidas y proyectos colectivos.",
+                    futureProjection: "Requiere un fuerte énfasis en la educación cívica y el desarrollo de liderazgos que fomenten la colaboración y el pensamiento a largo plazo."
+                },
+                {
+                    title: "La Trampa de la Simplificación",
+                    metaphor: "El Laberinto de Espejos",
+                    description: "Un escenario donde la tendencia a la simplificación lleva a soluciones aparentes que solo reflejan los problemas sin resolverlos realmente, como un laberinto de espejos donde cada salida parece ser la correcta pero solo lleva a otro reflejo del mismo problema.",
+                    characteristics: [
+                        "Predominio del pensamiento mágico y soluciones rápidas",
+                        "Refuerzo del comportamiento impredecible en crisis",
+                        "Persistencia de la inmadurez social"
+                    ],
+                    historicalManifestations: "Se ha manifestado en los ciclos de crisis económicas y políticas, donde soluciones simplistas han llevado a problemas más profundos, como se vio en el 'Viernes Negro' de 1983.",
+                    futureProjection: "Sin un cambio significativo, este escenario podría perpetuar ciclos de crisis y soluciones temporales, dificultando el desarrollo sostenible."
+                },
+                {
+                    title: "La Revolución de la Responsabilidad",
+                    metaphor: "El Jardín Comunitario",
+                    description: "Un escenario donde el individualismo se transforma en una responsabilidad compartida por el bienestar colectivo, como un jardín comunitario donde cada persona cuida su parcela pero contribuye al florecimiento del conjunto.",
+                    characteristics: [
+                        "Evolución del individualismo hacia la responsabilidad social",
+                        "Desarrollo de la madurez social a través de proyectos comunitarios",
+                        "Canalización de la impredictibilidad hacia la innovación social"
+                    ],
+                    historicalManifestations: "Se han visto destellos de este escenario en momentos de crisis aguda, como durante el Caracazo, donde surgieron iniciativas comunitarias de apoyo mutuo.",
+                    futureProjection: "Requiere el fortalecimiento de la sociedad civil y la creación de espacios de participación ciudadana efectiva."
+                },
+                {
+                    title: "El Péndulo de la Incertidumbre",
+                    metaphor: "La Montaña Rusa Emocional",
+                    description: "Un escenario donde la ambitendencia y el comportamiento impredecible generan ciclos de entusiasmo y desencanto, como una montaña rusa emocional que alterna entre picos de optimismo y valles de pesimismo.",
+                    characteristics: [
+                        "Intensificación de la ambitendencia en la toma de decisiones",
+                        "Ciclos cortos de cambio y retroceso",
+                        "Persistencia del pensamiento mágico en la búsqueda de soluciones"
+                    ],
+                    historicalManifestations: "Se ha observado en los ciclos políticos de las últimas décadas, con alternancias entre esperanza y desilusión, como se vio en los eventos de 1992 y sus secuelas.",
+                    futureProjection: "Sin mecanismos de estabilidad, este escenario podría llevar a una fatiga social y política, dificultando la implementación de cambios estructurales."
+                }
+            ];
+
+            return e('div', { className: 'infographic' },
+                e('h1', null, 'Escenarios de Transformación: Personalidad Venezolana'),
+                e(Section, { title: 'Incertidumbres Críticas' },
+                    e('ul', null, uncertainties.map((uncertainty, index) => 
+                        e('li', { key: index }, uncertainty)
+                    ))
+                ),
+                e(Section, { title: 'Escenarios' },
+                    scenarios.map((scenario, index) => 
+                        e(Scenario, { key: index, ...scenario })
+                    )
+                ),
+                e(Section, { title: 'Análisis Histórico y Proyección Futura' },
+                    e('div', { className: 'timeline' },
+                        e('h3', null, 'Manifestaciones Históricas'),
+                        e('ul', null,
+                            e('li', null, '1983 - "Viernes Negro": Manifestación de "La Trampa de la Simplificación" con soluciones económicas simplistas.'),
+                            e('li', null, '1989 - Caracazo: Surgimiento momentáneo de "La Revolución de la Responsabilidad" en respuesta a la crisis.'),
+                            e('li', null, '1992 - Intento de golpe de Estado: Ejemplo de "El Péndulo de la Incertidumbre" con ciclos de esperanza y desilusión.'),
+                            e('li', null, '2024 - Crisis institucional: Posible punto de inflexión entre los diferentes escenarios.')
+                        )
+                    ),
+                    e('div', { className: 'future-projection' },
+                        e('h3', null, 'Proyección Futura'),
+                        e('p', null, 'El futuro de Venezuela dependerá de cómo se aborden las características de personalidad identificadas:'),
+                        e('ul', null,
+                            e('li', null, 'Si se logra canalizar la ambitendencia y el comportamiento impredecible hacia la innovación y adaptabilidad, podría emerger "El Despertar Colectivo".'),
+                            e('li', null, 'Si persiste la tendencia a la simplificación y el pensamiento mágico, es probable que se mantenga "La Trampa de la Simplificación".'),
+                            e('li', null, 'El desarrollo de la madurez social y la transformación del individualismo podrían llevar a "La Revolución de la Responsabilidad".'),
+                            e('li', null, 'Sin cambios significativos, el país podría continuar en "El Péndulo de la Incertidumbre".')
+                        ),
+                        e('p', null, 'La clave para un futuro positivo radica en la educación, el fortalecimiento institucional y el desarrollo de un liderazgo que fomente la colaboración y el pensamiento a largo plazo.')
+                    )
+                )
+            );
+        };
+
+        ReactDOM.render(e(App), document.getElementById('root'));
+    </script>
+</body>
+</html>
